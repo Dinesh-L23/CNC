@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  shortDescription String
+  description      String
+  image            String
+  applications     String   // JSON string or newline list
+  specifications   String   // JSON string table
+  material         String
+  coating          String
+  status           String   @default("published")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  image       String
+  icon        String
+  status      String   @default("active")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Gallery {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String
+  category    String   // "CNC Machines", "Manufacturing", "Grinding", "Products", "Inspection", "Facility"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model QuoteRequest {
+  id           String   @id @default(cuid())
+  name         String
+  companyName  String
+  email        String
+  phone        String
+  product      String
+  quantity     String
+  deliveryDate String
+  material     String
+  toolDiameter String
+  application  String
+  drawingUrl   String?
+  message      String
+  status       String   @default("New") // "New", "Contacted", "Quoted", "Closed"
+  adminNotes   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ContactMessage {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  companyName String?
+  message     String
+  status      String   @default("New") // "New", "Read", "Replied"
+  createdAt   DateTime @default(now())
+}
+
+model CompanyInformation {
+  id          String   @id @default(cuid())
+  companyName String
+  address     String
+  phone1      String
+  phone2      String
+  email1      String
+  email2      String
+  email3      String
+  description String
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  section   String   @unique
+  data      String   // JSON string
+  updatedAt DateTime @updatedAt
+}

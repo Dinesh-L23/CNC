@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --brand-navy: #071A2B;
+    --brand-dark-blue: #0B263D;
+    --brand-electric: #1677FF;
+    --brand-cyan: #00C2FF;
+    --brand-light-gray: #F4F7FA;
+    --brand-dark-text: #17202A;
+    --brand-muted: #5A6A80;
+    --brand-border: #E2E8F0;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: var(--brand-dark-text);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Utilities for Industrial Precision Look */
+.bg-navy-dark {
+  background-color: #071A2B;
+}
+
+.bg-navy-card {
+  background-color: #0B263D;
+}
+
+.text-cyan-accent {
+  color: #00C2FF;
+}
+
+.text-electric-blue {
+  color: #1677FF;
+}
+
+.border-navy-border {
+  border-color: #163655;
+}
+
+/* Engineering subtle grid pattern */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(22, 119, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-grid-pattern-dark {
+  background-image: radial-gradient(rgba(0, 194, 255, 0.15) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Glassmorphism for floating controls */
+.glass-panel {
+  background: rgba(11, 38, 61, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #071A2B;
+}
+::-webkit-scrollbar-thumb {
+  background: #163655;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1677FF;
 }
